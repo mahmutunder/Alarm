@@ -154,6 +154,7 @@ public class Alarm extends JFrame implements ActionListener {
                     System.out.print("\r Alarm will be off " + counter + " seconds");
                     counter--;
                     music();
+                    counter--;
                 } else {
                     System.out.print("off");
                     timer.cancel();
