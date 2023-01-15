@@ -1,7 +1,11 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -153,6 +157,7 @@ public class Alarm extends JFrame implements ActionListener {
                 if(counter>0){
                     System.out.print("\r Alarm will be off "+counter + " seconds");
                     counter--;
+                    music();
                 }else{
                     System.out.print("off");
                     timer.cancel();
@@ -174,6 +179,29 @@ public class Alarm extends JFrame implements ActionListener {
 
 
         timer.scheduleAtFixedRate(task,date.getTime(),1000);
+
+
+    }
+
+    public void music(){
+        Scanner scanner =new Scanner(System.in);
+
+        File file = new File("HalukLeventElfida.wav");
+        AudioInputStream audio = null;
+        try {
+            audio = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audio);
+            clip.start();
+
+            String a= scanner.nextLine();
+        } catch (UnsupportedAudioFileException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
